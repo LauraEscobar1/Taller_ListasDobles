@@ -16,6 +16,17 @@ class DoublyLinkedList {
     this.size = 0;
   }
 
+  loadFromArray(data) {
+    this.head = null;
+    this.tail = null;
+    this.current = null;
+    this.size = 0;
+
+    data.forEach(item => {
+      this.insertEnd(item.date, item.description, item.emotion);
+    });
+  }
+
   insertEnd(date, desc, emo) {
     const node = new Node(date, desc, emo);
 
@@ -60,14 +71,35 @@ class DoublyLinkedList {
 
 const list = new DoublyLinkedList();
 
-function addMemory() {
+async function addMemory() {
   const date = document.getElementById('inputDate').value;
   const desc = document.getElementById('inputDesc').value;
   const emo = document.getElementById('inputEmotion').value;
 
   if (!date || desc.length < 3 || !emo) return;
 
-  list.insertEnd(date, desc, emo);
+  await fetch("http://127.0.0.1:5000/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      date: date,
+      description: desc,
+      emotion: emo
+    })
+  });
+
+  await loadMemories();
+
+  document.getElementById('inputDesc').value = "";
+}
+
+async function loadMemories() {
+  const res = await fetch("http://127.0.0.1:5000/all");
+  const data = await res.json();
+
+  list.loadFromArray(data);
   render();
 }
 
@@ -98,3 +130,5 @@ function render() {
   document.getElementById('mvDate').textContent = list.current.date;
   document.getElementById('mvDescription').textContent = list.current.description;
 }
+
+window.onload = loadMemories;
