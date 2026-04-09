@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Timeline</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="header-badge">Mood Timeline</div>
+  <h1>Emotional Memory Manager</h1>
+
+  <div class="header-stats">
+    <div class="stat-pill">Total <strong id="count-total">0</strong></div>
+    <div class="stat-pill">Position <strong id="count-pos">0</strong> / <strong id="count-max">0</strong></div>
+  </div>
+</header>
+
+<main>
+
+  <div class="memory-viewer" id="memoryViewer">
+    <div id="emptyState">No memories yet</div>
+
+    <div id="memoryContent" style="display:none">
+      <div id="mvEmotionName"></div>
+      <div id="mvDate"></div>
+      <div id="mvDescription"></div>
+
+      <div class="nav">
+        <button onclick="navigate('prev')" id="btnPrev">Previous</button>
+        <button onclick="deleteMemory()" id="btnDelete">Delete</button>
+        <button onclick="navigate('next')" id="btnNext">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+
+    <input type="date" id="inputDate">
+    <textarea id="inputDesc"></textarea>
+
+    <select id="inputEmotion">
+      <option value="">Select emotion</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="anxious">anxious</option>
+      <option value="motivated">motivated</option>
+    </select>
+
+    <button onclick="addMemory()">Add memory</button>
+
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

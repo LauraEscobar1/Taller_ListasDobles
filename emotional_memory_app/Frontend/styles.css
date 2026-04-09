@@ -1,0 +1,36 @@
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #fff8fb;
+  color: #3d1a2e;
+}
+
+header {
+  text-align: center;
+  padding: 30px;
+}
+
+.memory-viewer {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #ffd6e7;
+}
+
+.sidebar {
+  margin-top: 20px;
+}
+
+button {
+  background: #e83278;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.nav {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
